@@ -1,6 +1,12 @@
+import { useContext } from "react";
+import { MenuContext } from "../context/menuContext";
+import { CartContext } from "../context/cartContext";
 import data from "../assets/data";
 
-function Cart({ menu, cart, setCart }) {
+function Cart() {
+  const { menu } = useContext(MenuContext);
+  const { cart, setCart } = useContext(CartContext);
+
   if (!menu)
     return (
       <div style={{ textAlign: "center", margin: "80px" }}>
@@ -31,7 +37,9 @@ function Cart({ menu, cart, setCart }) {
   );
 }
 
-function CartItem({ item, options, quantity, cart, setCart }) {
+function CartItem({ item, options, quantity }) {
+  const { cart, setCart } = useContext(CartContext);
+
   return (
     <li className="cart-item">
       <div className="cart-item-info">
